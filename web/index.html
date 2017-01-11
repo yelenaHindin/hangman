@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../src/Hangman.js"></script>
     <link rel="stylesheet" href="style.css"></link>
+    <script src="../src/Hangman.js"></script>
+    <!-- <script src="../src/nounlist.js"></script> -->
     <script>
-        var hangman = Hangman.Hangman();
+        var words = [ "tree", "house"];
+        var hangman = new Hangman.Hangman(words);
+        var wordGuess = hangman.word();
+        
+        var wordPresentation = [];
+        function fill() {
+            var div = document.getElementById("divWordGuess");
+            for(var i =0; i < wordGuess.length; i++){
+                div.appendChild(document.createTextNode(wordGuess[i]));
+            }
+        }
         window.onload = function () {
-            
+            fill();
         }
     </script>
   </head>
 
     <body>
+        <div id="divWordGuess">
+        </div>
+        <div>
+        </div>
+        <div></div>
         <table>
             <tr>
                 <td></td>
