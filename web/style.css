@@ -13,3 +13,11 @@
 .inputField {
     border:  2px inset grey;
 }
+
+.correctLetter {
+    color: black;
+}
+
+.incorrectLetter {
+    color: red;
+}

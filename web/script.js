@@ -19,6 +19,12 @@ function refill() {
     }
 }
 
+function addLetter(c, correct)
+{
+    // Don't do it in industrial application!
+    inputField.innerHTML = inputField.innerHTML + "<span class='" + (correct ? "correctLetter" : "incorrectLetter") + "'>" + c + "</span>";
+}
+
 
 window.onload = function () {
     fill();
@@ -28,10 +34,17 @@ window.onload = function () {
 
 function onKeyPress(evt)
 {
-    if (hangman.guess(evt.key)) {
+    if (evt.key.search(/\w/) != 0 || evt.key.search(/\d/) != -1)
+        return;
+
+    var key = evt.key.toLowerCase();
+
+    if (hangman.guess(key)) {
         console.log("Key found");
         refill();
+        addLetter(key, true);
     } else {
         console.log("Key not found");
+        addLetter(key, false);
     }
 }
