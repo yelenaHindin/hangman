@@ -9,3 +9,7 @@
 .righttd{
     text-align: left;
 }
+
+.inputField {
+    border:  2px inset grey;
+}

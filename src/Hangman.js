@@ -27,8 +27,12 @@ Hangman.Hangman.prototype.guess = function(guessChar)
         i++;
     }
 
-    if (!found)
+    if (!found) {
         this.m_nFailedGuesses++;
+        return false;
+    } else {
+        return true;
+    }
 }
 
 Hangman.Hangman.prototype.state = function() {
