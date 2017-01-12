@@ -47,6 +47,18 @@ Hangman.Hangman.prototype.nFailedGuesses = function() {
     return this.m_nFailedGuesses;
 }
 
+Hangman.Hangman.prototype.isWordGuessed = function() {
+    if(this.m_state.length > 0) {
+        for (var c of this.m_state)  {
+            if (!c) {
+                return false;
+            }
+        }
+    } else {
+        return false;
+    }
+    return true;
+}
 
 if (typeof process !== 'undefined' && process) {
     module.exports = Hangman;
