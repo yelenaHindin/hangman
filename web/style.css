@@ -12,6 +12,8 @@
 
 .inputField {
     border:  2px inset grey;
+    width: 400px;
+    height : 20px;
 }
 
 .correctLetter {

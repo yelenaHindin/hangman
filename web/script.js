@@ -3,6 +3,7 @@ var hangman = new Hangman.Hangman(words);
 var word = hangman.word();
 
 var wordPresentation = [];
+var lastStage = -1;
 
 function fill() {
     var state = hangman.state();
@@ -29,6 +30,7 @@ function addLetter(c, correct)
 window.onload = function () {
     fill();
     document.addEventListener('keydown', onKeyPress);
+    btnInit.addEventListener('click', init);
 }
 
 
@@ -39,18 +41,31 @@ function onKeyPress(evt)
 
     var key = evt.key.toLowerCase();
 
-    if (hangman.guess(key)) {
-        console.log("Key found");
-        refill();
-        addLetter(key, true);
-    } else {
-        console.log("Key not found");
-        addLetter(key, false);
-        addStage();
+    if(!hangman.isWordGuessed()){
+        if (hangman.guess(key)) {
+            console.log("Key found");
+            refill();
+            addLetter(key, true);
+        } else {
+            console.log("Key not found");
+            addLetter(key, false);
+            addStage();
+        }
     }
 }
 
 function addStage(){
     var failedGuesses = hangman.nFailedGuesses();
     document.getElementById("stage-" +failedGuesses).classList.remove("unvisible");
+    lastStage = failedGuesses;
+}
+
+function init() {
+    divWordGuess.innerHTML = "";
+    inputField.innerHTML = "";
+    hangman = new Hangman.Hangman(words);
+    fill();
+    for(var i = 0; i <= lastStage;i++) {
+        document.getElementById("stage-" + i).classList.add("unvisible");
+    }
 }
