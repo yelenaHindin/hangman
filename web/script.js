@@ -46,5 +46,11 @@ function onKeyPress(evt)
     } else {
         console.log("Key not found");
         addLetter(key, false);
+        addStage();
     }
+}
+
+function addStage(){
+    var failedGuesses = hangman.nFailedGuesses();
+    document.getElementById("stage-" +failedGuesses).classList.remove("unvisible");
 }

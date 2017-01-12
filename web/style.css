@@ -21,3 +21,7 @@
 .incorrectLetter {
     color: red;
 }
+
+.unvisible {
+    visibility : hidden;
+}

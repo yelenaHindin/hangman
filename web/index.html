@@ -6,7 +6,7 @@
     <script src="script.js"></script>
     <!-- <script src="../src/nounlist.js"></script> -->
     <script>
-
+      var stages = [ "firstStage" ];
     </script>
   </head>
 
@@ -18,19 +18,46 @@
     <div></div>
     <table>
       <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td class="htd">-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>|</td>
         <td></td>
-        <td>O</td>
+        <td></td>
+        <td class="htd unvisible" id="stage-0">|</td>
         <td></td>
       </tr>
       <tr>
-        <td class="lefttd">/</td>
-        <td class="htd">|</td>
-        <td class="righttd">\</td>
+        <td>|</td>
+        <td></td>
+        <td></td>
+        <td id="stage-1" class="unvisible">O</td>
+        <td></td>
       </tr>
       <tr>
-        <td class="lefttd">/</td>
+        <td>|</td>
         <td></td>
-        <td class="righttd">\</td>
+        <td class="lefttd unvisible" id="stage-3">/</td>
+        <td class="htd unvisible" id="stage-2">|</td>
+        <td class="righttd unvisible" id="stage-4">\</td>
+      </tr>
+      <tr>
+        <td>|</td>
+        <td></td>
+        <td class="lefttd unvisible" id="stage-5">/</td>
+        <td></td>
+        <td class="righttd unvisible" id="stage-6">\</td>
+      </tr>
+      <tr>
+        <td>|</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     </table>
   </body>

@@ -11,7 +11,7 @@ Hangman.Hangman = function(words, index) {
     this.m_word = words[index];
 
     this.m_state = [];
-    this.m_nFailedGuesses = 0;
+    this.m_nFailedGuesses = -1;
 }
 
 Hangman.Hangman.prototype.guess = function(guessChar)
