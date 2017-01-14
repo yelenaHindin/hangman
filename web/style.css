@@ -24,6 +24,31 @@
     color: red;
 }
 
-.unvisible {
+
+.stage-0 {
+    visibility : hidden;
+}
+
+.stage-1 {
+    visibility : hidden;
+}
+
+.stage-2 {
+    visibility : hidden;
+}
+
+.stage-3 {
+    visibility : hidden;
+}
+
+.stage-4 {
+    visibility : hidden;
+}
+
+.stage-5 {
+    visibility : hidden;
+}
+
+.stage-6 {
     visibility : hidden;
 }

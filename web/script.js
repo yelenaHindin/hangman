@@ -34,6 +34,15 @@ window.onload = function () {
     btnInit.addEventListener('click', init);
 }
 
+function setVisibility(stage, on)
+{
+    var stageElements = document.querySelectorAll(".stage-" + stage);
+
+    console.log(stageElements);
+
+    for (var e of stageElements)
+        e.style.visibility = on ? "visible" : "hidden";
+}
 
 function onKeyPress(evt)
 {
@@ -67,7 +76,7 @@ function onKeyPress(evt)
 function addStage(){
     var failedGuesses = hangman.nFailedGuesses();
     if (failedGuesses > 0) {
-        document.getElementById("stage-" + (failedGuesses  - 1)).classList.remove("unvisible");
+        setVisibility(failedGuesses - 1, true);
         lastStage = failedGuesses;
     }
 }
@@ -77,8 +86,10 @@ function init() {
     inputField.innerHTML = "";
     hangman = new Hangman.Hangman(words);
     fill();
+
+
     for(var i = 0; i < lastStage;i++) {
-        document.getElementById("stage-" + i).classList.add("unvisible");
+        setVisibility(i, false);
     }
     gameOver = false;
     state.innerHTML = "Playing";
