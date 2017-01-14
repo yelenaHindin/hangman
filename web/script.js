@@ -4,6 +4,7 @@ var word = hangman.word();
 
 var wordPresentation = [];
 var lastStage = -1;
+var gameOver = false;
 
 function fill() {
     var state = hangman.state();
@@ -36,28 +37,39 @@ window.onload = function () {
 
 function onKeyPress(evt)
 {
-    if (evt.key.search(/\w/) != 0 || evt.key.search(/\d/) != -1)
+    if (evt.key.search(/^\w$/) != 0 || evt.key.search(/^\d$/) != -1)
+        return;
+
+    if (gameOver)
         return;
 
     var key = evt.key.toLowerCase();
 
-    if(!hangman.isWordGuessed()){
-        if (hangman.guess(key)) {
-            console.log("Key found");
-            refill();
-            addLetter(key, true);
-        } else {
-            console.log("Key not found");
-            addLetter(key, false);
-            addStage();
+    if (hangman.guess(key)) {
+        console.log("Key found");
+        refill();
+        addLetter(key, true);
+        if (hangman.state().reduce((a, e) => e?a+1:a, 0) == hangman.word().length) {
+            gameOver = true;
+            state.innerHTML = "You won!";
+        }
+    } else {
+        console.log("Key not found");
+        addLetter(key, false);
+        addStage();
+        if (hangman.nFailedGuesses() >= 7) {
+            state.innerHTML = "You failed!";
+            gameOver = true;
         }
     }
 }
 
 function addStage(){
     var failedGuesses = hangman.nFailedGuesses();
-    document.getElementById("stage-" +failedGuesses).classList.remove("unvisible");
-    lastStage = failedGuesses;
+    if (failedGuesses > 0) {
+        document.getElementById("stage-" + (failedGuesses  - 1)).classList.remove("unvisible");
+        lastStage = failedGuesses;
+    }
 }
 
 function init() {
@@ -65,7 +77,9 @@ function init() {
     inputField.innerHTML = "";
     hangman = new Hangman.Hangman(words);
     fill();
-    for(var i = 0; i <= lastStage;i++) {
+    for(var i = 0; i < lastStage;i++) {
         document.getElementById("stage-" + i).classList.add("unvisible");
     }
+    gameOver = false;
+    state.innerHTML = "Playing";
 }

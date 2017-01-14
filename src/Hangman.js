@@ -11,7 +11,7 @@ Hangman.Hangman = function(words, index) {
     this.m_word = words[index];
 
     this.m_state = [];
-    this.m_nFailedGuesses = -1;
+    this.m_nFailedGuesses = 0;
 }
 
 Hangman.Hangman.prototype.guess = function(guessChar)
@@ -45,19 +45,6 @@ Hangman.Hangman.prototype.word = function() {
 
 Hangman.Hangman.prototype.nFailedGuesses = function() {
     return this.m_nFailedGuesses;
-}
-
-Hangman.Hangman.prototype.isWordGuessed = function() {
-    if(this.m_state.length > 0) {
-        for (var c of this.m_state)  {
-            if (!c) {
-                return false;
-            }
-        }
-    } else {
-        return false;
-    }
-    return true;
 }
 
 if (typeof process !== 'undefined' && process) {
