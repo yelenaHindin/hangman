@@ -1,4 +1,5 @@
-var words = [ "tree", "house"];
+/* test values
+ var words = [ "tree", "house", "equality" ];  */
 var hangman = new Hangman.Hangman(words);
 var word = hangman.word();
 
@@ -67,7 +68,7 @@ function onKeyPress(evt)
         addLetter(key, false);
         addStage();
         if (hangman.nFailedGuesses() >= 7) {
-            state.innerHTML = "You failed!";
+            state.innerHTML = "You failed: the word was " + hangman.word();
             gameOver = true;
         }
     }
@@ -86,7 +87,6 @@ function init() {
     inputField.innerHTML = "";
     hangman = new Hangman.Hangman(words);
     fill();
-
 
     for(var i = 0; i < lastStage;i++) {
         setVisibility(i, false);
